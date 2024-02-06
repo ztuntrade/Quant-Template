@@ -1,0 +1,11 @@
+variables:
+    IMAGE_NAME: jainsiddharth1999/zeltatech
+    IMAGE_TAG: bot_main
+
+stages:
+  - build
+  - deploy
+
+
+
+
