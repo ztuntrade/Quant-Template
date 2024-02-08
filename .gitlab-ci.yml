@@ -23,8 +23,8 @@ build:
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
 
   script:
-    - docker rmi $IMAGE_NAME:$IMAGE_TAG || true
-    - DOCKER_BUILDKIT=1 docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker rmi $IMAGE_NAME:$IMAGE_TAG
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
     
 deploy:
   only:
