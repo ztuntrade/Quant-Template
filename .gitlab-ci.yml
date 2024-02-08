@@ -15,7 +15,7 @@ deploy:
     - chmod 400 $SSH_PRIVATE_KEY
   script:
     - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SERVER
-    - docker rmi $IMAGE_NAME:$IMAGE_TAG 
+    - docker rmi $IMAGE_NAME:$IMAGE_TAG || true
     - docker build -t $IMAGE_NAME:$IMAGE_TAG .
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
     - docker stop $CONTAINER_NAME || true &&
