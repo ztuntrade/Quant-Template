@@ -5,41 +5,43 @@ variables:
 
 stages:
   - build
-  - deploy
+#   - deploy
 
 
 build:
-  only:
-    - main  
-
-  stage: build
-
-  image: docker:latest
-
-  services:
-    - docker:dind
-
-  before_script:
-    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
-
   script:
-    - docker rmi $IMAGE_NAME:$IMAGE_TAG || true
-    - DOCKER_BUILDKIT=1 docker build -t $IMAGE_NAME:$IMAGE_TAG .
+   - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SERVER
+#   only:
+#     - main  
+
+#   stage: build
+
+#   image: docker:latest
+
+#   services:
+#     - docker:dind
+
+#   before_script:
+#     - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+
+#   script:
+#     - docker rmi $IMAGE_NAME:$IMAGE_TAG || true
+#     - DOCKER_BUILDKIT=1 docker build -t $IMAGE_NAME:$IMAGE_TAG .
     
-deploy:
-  only:
-    - main  
-  stage: deploy
+# deploy:
+#   only:
+#     - main  
+#   stage: deploy
 
-  before_script:
-    - chmod 400 $SSH_PRIVATE_KEY
+#   before_script:
+#     - chmod 400 $SSH_PRIVATE_KEY
 
-  script:
-    - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SERVER "
-        docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
-        docker stop $CONTAINER_NAME || true &&
-        docker rm $CONTAINER_NAME || true &&
-        docker run  -dit --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG "
+#   script:
+#     - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SERVER "
+#         docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
+#         docker stop $CONTAINER_NAME || true &&
+#         docker rm $CONTAINER_NAME || true &&
+#         docker run  -dit --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG "
 
 
 
