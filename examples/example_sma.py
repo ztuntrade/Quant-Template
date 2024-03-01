@@ -63,11 +63,34 @@ def fronttest():
 
     # data=#your live data source
     generated_signal_column = "signals"
-    for idx, row in data.iterrows():
-        if row[generated_signal_column] == 1:
-            print(row["datetime"], "Sell")
-        elif row[generated_signal_column] == -1:
-            print(row["datetime"], "Buy")
+    client = Client()
+
+    flag = 0
+    for i in range(data.shape[0], -1, -1):
+        if data.iloc[i, :].signals == 1:
+            if flag == 0:
+                print(data.iloc[i, :]["datetime", "signals"])
+                client.create_order()
+                flag = 1
+
+            elif flag == -1:
+                print(data.iloc[i, :]["datetime", "signals"])
+                client.close_order()
+                flag = 0
+
+            break
+        if data.iloc[i, :].signals == -1:
+            if flag == 0:
+                print(data.iloc[i, :]["datetime", "signals"])
+                client.create_order()
+                flag = 1
+
+            elif flag == 1:
+                print(data.iloc[i, :]["datetime", "signals"])
+                client.close_order()
+                flag = -1
+
+            break
 
 
 if __name__ == "__main__":
