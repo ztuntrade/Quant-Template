@@ -38,6 +38,9 @@ flask==1.1.2
 requests==2.25.1
 ```
 
+### Backtesting with Provided Data Sets
+The project includes a data folder containing CSV files with BTCUSDT trading data over various timeframes for the years 2018 through 2022, as well as separate data for 2023. These data sets are a valuable resource for developers looking to backtest their trading strategies against historical price movements and market conditions.
+
 ### Untrade SDK
 Within the project, you will find an examples folder that contains sample strategies for generating buy and sell signals and performing backtests. These examples serve as a valuable resource for understanding how to effectively utilize the project's structure and the Untrade SDK.
 
