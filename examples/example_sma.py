@@ -69,24 +69,24 @@ def fronttest():
     for i in range(data.shape[0], -1, -1):
         if data.iloc[i, :].signals == 1:
             if flag == 0:
-                print(data.iloc[i, :]["datetime", "signals"])
+                print(data.iloc[i, :]["datetime", "signals"], " BUY")
                 client.create_order()
                 flag = 1
 
             elif flag == -1:
-                print(data.iloc[i, :]["datetime", "signals"])
+                print(data.iloc[i, :]["datetime", "signals"], " SQUARED OFF")
                 client.close_order()
                 flag = 0
 
             break
         if data.iloc[i, :].signals == -1:
             if flag == 0:
-                print(data.iloc[i, :]["datetime", "signals"])
+                print(data.iloc[i, :]["datetime", "signals"], " SELL")
                 client.create_order()
                 flag = 1
 
             elif flag == 1:
-                print(data.iloc[i, :]["datetime", "signals"])
+                print(data.iloc[i, :]["datetime", "signals"], " SQUARED OFF")
                 client.close_order()
                 flag = -1
 

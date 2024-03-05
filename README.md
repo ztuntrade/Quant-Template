@@ -4,12 +4,22 @@ This project is an innovative platform where multiple teams collaborate and comp
 
 ## Getting Started
 
-### Prerequisites
+### User Registration and Setup
+#### Signing Up
+- Visit jupyter.untrade.io to create an account.
+- Complete the signup form with your details.
+- Once registered, you will receive a confirmation email. Follow the instructions to verify your account.
+#### Logging In and Initial Setup
+- Log in to your account on jupyter.untrade.io.
+- Upon your first login, please wait for about a minute as the system prepares your workspace.
+- After the setup is complete, navigate to the work folder in your dashboard. You will find a template main.py file and any necessary directory structure already created for you.
+
+### Prerequisites (Not for Jupyterhub Users)
 
 - Python >=3.8
 - pip3 (Python package manager)
 
-### Installation
+### Installation (Not for Jupyterhub Users)
 
 Clone this repository to your local machine:
 
