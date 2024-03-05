@@ -6,11 +6,11 @@ This project is an innovative platform where multiple teams collaborate and comp
 
 ### User Registration and Setup
 #### Signing Up
-- Visit  [jupyter.untrade.io](jupyter.untrade.io) to create an account.
+- Visit  [jupyter.untrade.io](https://jupyter.untrade.io/) to create an account.
 - Complete the signup form with your details.
 - Once registered, you will receive a confirmation email. Follow the instructions to verify your account.
 #### Logging In and Initial Setup
-- Log in to your account on  [jupyter.untrade.io](jupyter.untrade.io).
+- Log in to your account on  [jupyter.untrade.io](https://jupyter.untrade.io/).
 - Upon your first login, please wait for about a minute as the system prepares your workspace.
 - After the setup is complete, navigate to the work folder in your dashboard. You will find a template main.py file and any necessary directory structure already created for you.
 
