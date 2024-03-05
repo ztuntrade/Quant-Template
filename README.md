@@ -39,6 +39,20 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
+### Installation of TA-LIB
+Copy following code in your jupyter notebook
+```bash
+!wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz
+
+!tar -xzf ta-lib-0.4.0-src.tar.gz
+%cd ta-lib/
+!./configure --prefix=$HOME
+!make
+!make install
+
+!TA_LIBRARY_PATH=~/lib TA_INCLUDE_PATH=~/include pip install ta-lib
+```
+
 ### Adding Dependencies
 
 If your development introduces new Python packages as dependencies, ensure to list them in the `requirements.txt` file. Format each dependency on a new line, specifying the exact version to maintain consistency across environments:
