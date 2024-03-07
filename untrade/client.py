@@ -20,10 +20,13 @@ class Client(BaseClient):
 
     @staticmethod
     def _handle_response(response: requests.Response):
-        return response.json()
+        if response.status_code == 200:
+            return response.json()
+        return response.text
 
-    def _handle_file(self, path, file_path):
+    def _handle_file(self, path, file_path, **kwargs):
         uri = self._create_api_uri(path)
+        data = self._get_keyword_argumets(**kwargs)
         try:
             files = [
                 (
@@ -32,7 +35,7 @@ class Client(BaseClient):
                 )
             ]
 
-            self.response = self.file_session.post(uri, files=files)
+            self.response = self.file_session.post(uri, files=files, data=data)
             return self._handle_response(self.response)
         except FileNotFoundError:
             return None
@@ -118,7 +121,7 @@ class Client(BaseClient):
         """
         return self._post(path="untrade/order/stop-loss", data=params)
 
-    def backtest(self, file_path) -> Dict:
+    def backtest(self, file_path, **params) -> Dict:
         """
         Runs a backtest with the provided file.
 
@@ -140,4 +143,4 @@ class Client(BaseClient):
             signals (int)
         Each row in the file should represent a different time point in the dataset.
         """
-        return self._handle_file("untrade/backtest", file_path)
+        return self._handle_file("untrade/backtest", file_path, data=params)
