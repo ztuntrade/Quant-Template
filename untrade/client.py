@@ -21,8 +21,10 @@ class Client(BaseClient):
     @staticmethod
     def _handle_response(response: requests.Response):
         if response.status_code == 200:
-            return response.json()
-        return response.text
+            for line in response.iter_content(chunk_size=1024):
+                if line:
+                    yield line.decode("utf-8")
+        return "Backtest Timeout"
 
     def _handle_file(self, path, file_path, **kwargs):
         uri = self._create_api_uri(path)
@@ -35,7 +37,9 @@ class Client(BaseClient):
                 )
             ]
 
-            self.response = self.file_session.post(uri, files=files, data=data)
+            self.response = self.file_session.post(
+                uri, files=files, data=data, stream=True
+            )
             return self._handle_response(self.response)
         except FileNotFoundError:
             return None
@@ -143,4 +147,4 @@ class Client(BaseClient):
             signals (int)
         Each row in the file should represent a different time point in the dataset.
         """
-        return self._handle_file("untrade/backtest", file_path, data=params)
+        return self._handle_file("untrade/backtest-stream", file_path, data=params)
