@@ -29,7 +29,7 @@ deploy_back:
 deploy_front:
   only: 
     changes:
-      - back_test.py
+      - front_test.py
 
   stage: deploy_frontest
   
