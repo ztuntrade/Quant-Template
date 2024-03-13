@@ -1,26 +1,51 @@
 variables:
     IMAGE_NAME: jainsiddharth1999/zeltatech
     IMAGE_TAG: $CI_PROJECT_ID
-    CONTAINER_NAME: $CI_PROJECT_NAME
+    CONTAINER_NAME_FRONT: $CI_PROJECT_NAME-FRONT
+    CONTAINER_NAME_BACK: $CI_PROJECT_NAME-BACK
 
 stages:
-  - deploy
+  - deploy_backtest
+  - deploy_frontest
 
 deploy:
   only:
     - main  
-  stage: deploy
+    changes:
+      - back_test.py
+  stage: deploy_backtest
   
   before_script:
     - chmod 400 $SSH_PRIVATE_KEY
   script:
     - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SERVER
     - docker rmi $IMAGE_NAME:$IMAGE_TAG || true
-    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile.back_test .
     - docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
-    - docker stop $CONTAINER_NAME || true &&
-    - docker rm $CONTAINER_NAME || true &&
-    - docker run  -dit --name $CONTAINER_NAME $IMAGE_NAME:$IMAGE_TAG
+    - docker stop $CONTAINER_NAME_BACK || true &&
+    - docker rm $CONTAINER_NAME_BACK || true &&
+    - docker run  -dit --name $CONTAINER_NAME_BACK $IMAGE_NAME:$IMAGE_TAG
+
+
+deploy:
+  only:
+    - main  
+    changes:
+      - back_test.py
+
+  stage: deploy_frontest
+  
+  before_script:
+    - chmod 400 $SSH_PRIVATE_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY $SERVER
+    - docker rmi $IMAGE_NAME:$IMAGE_TAG || true
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG -f Dockerfile.front_test .
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
+    - docker stop $CONTAINER_NAME_FRONT || true &&
+    - docker rm $CONTAINER_NAME_FRONT || true &&
+    - docker run  -dit --name $CONTAINER_NAME_FRONT $IMAGE_NAME:$IMAGE_TAG
+
 
 
 
