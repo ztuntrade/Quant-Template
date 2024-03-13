@@ -6,7 +6,7 @@ from SMA import process_data, strat
 
 
 def fetch_data(symbol="BTC", pair="USDT", timeframe="1h", futures=False, limit=1000):
-    url = f"https://jarvis.untrade.io/fetch_data?symbol={symbol}&pair={pair}&timeframe={timeframe}&futures={futures}&limit={limit}"
+    url = "Your Live source"
     headers = {"accept": "application/json"}
 
     try:
