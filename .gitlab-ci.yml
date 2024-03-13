@@ -8,9 +8,8 @@ stages:
   - deploy_backtest
   - deploy_frontest
 
-deploy:
-  only:
-    - main  
+deploy_back:
+  only: 
     changes:
       - back_test.py
   stage: deploy_backtest
@@ -27,9 +26,8 @@ deploy:
     - docker run  -dit --name $CONTAINER_NAME_BACK $IMAGE_NAME:$IMAGE_TAG
 
 
-deploy:
-  only:
-    - main  
+deploy_front:
+  only: 
     changes:
       - back_test.py
 
