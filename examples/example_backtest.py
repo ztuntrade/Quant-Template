@@ -90,5 +90,6 @@ if __name__ == "__main__":
     # Get the last value of backtest result
     last_value = None
     for value in backtest_result:
+        # print(value)  # Uncomment to see the full backtest result (backtest_result is a generator object)
         last_value = value
     print(last_value)
