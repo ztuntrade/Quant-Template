@@ -60,7 +60,6 @@ def fetch_historical_data(
     endTime: Union[None, str] = None,
     limit: str = 1000,
     futures: bool = False,
-    cm=False,
 ) -> pd.DataFrame:
     """
     Fetch historical price data from Binance API.

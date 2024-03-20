@@ -63,6 +63,7 @@ def perform_backtest(csv_file_path):
 
     # Perform backtest using the provided CSV file path
     result = client.backtest(
+        jupyter_id="Your_Jupyter_ID",  # the one you use to login to jupyter.untrade.io
         file_path=csv_file_path,
         leverage=1,  # Adjust leverage as needed
     )

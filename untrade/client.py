@@ -20,11 +20,17 @@ class Client(BaseClient):
 
     @staticmethod
     def _handle_response(response: requests.Response):
+        return response.json()
+
+    @staticmethod
+    def _handle_response_stream(response: requests.Response):
+        if response.headers["Content-Type"] == "application/json":
+            return response.json()
         if response.status_code == 200:
             for line in response.iter_content(chunk_size=1024):
                 if line:
                     yield line.decode("utf-8")
-        return "Backtest Timeout"
+        return "BACKTEST FAILED"
 
     def _handle_file(self, path, file_path, **kwargs):
         uri = self._create_api_uri(path)
@@ -40,7 +46,11 @@ class Client(BaseClient):
             self.response = self.file_session.post(
                 uri, files=files, data=data, stream=True
             )
-            return self._handle_response(self.response)
+            if self.response.status_code >= 400 and self.response.status_code < 500:
+                return self._handle_response(
+                    self.file_session.post(uri, files=files, data=data)
+                )
+            return self._handle_response_stream(self.response)
         except FileNotFoundError:
             return None
 
@@ -148,3 +158,14 @@ class Client(BaseClient):
         Each row in the file should represent a different time point in the dataset.
         """
         return self._handle_file("untrade/backtest-stream", file_path, data=params)
+
+    def fetch_live_data(self, **params) -> Dict:
+        """
+        Fetches live data for the provided symbol.
+
+        Parameters:
+            symbol (string): The trading symbol (e.g., BTCUSDT, ETHUSDT).
+            intreval (string): The time interval for the data (e.g., 1m, 5m, 15m, 30m 1h, 4h, 1d).
+            limit (int, optional): The number of data points to fetch (max limit is 1000).
+        """
+        return self._get(path="untrade/ohlc", data=params)

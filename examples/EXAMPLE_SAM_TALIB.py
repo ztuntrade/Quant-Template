@@ -73,7 +73,10 @@ def backtest():
 
     # Perform backtest using a trading API client
     client = Client()
-    result = client.backtest(file_path=file_path)
+    result = client.backtest(
+        jupyter_id="Your_Jupyter_ID",  # the one you use to login to jupyter.untrade.io
+        file_path=file_path,
+    )
     return result
 
 

@@ -2,6 +2,7 @@ import pandas as pd
 from untrade.client import Client
 import multiprocessing
 
+
 # Define a strategy class for SMA (Simple Moving Average) crossover
 class SMACrossoverStrategy:
     def __init__(self, data):
@@ -11,8 +12,12 @@ class SMACrossoverStrategy:
 
     def generate_signals(self):
         # Calculate short and long moving averages
-        self.data["Short_MA"] = self.data["close"].rolling(window=self.short_window).mean()
-        self.data["Long_MA"] = self.data["close"].rolling(window=self.long_window).mean()
+        self.data["Short_MA"] = (
+            self.data["close"].rolling(window=self.short_window).mean()
+        )
+        self.data["Long_MA"] = (
+            self.data["close"].rolling(window=self.long_window).mean()
+        )
 
         # Generate buy/sell signals based on crossover
         self.data["Signal"] = 0
@@ -35,6 +40,7 @@ class SMACrossoverStrategy:
         self.generate_signals()
         return self.data["generated_signal"]
 
+
 # Function for backtesting the strategy
 def backtest():
     csv_file_path = "YOUR_CSV"  # Replace with the path to your CSV file
@@ -53,8 +59,12 @@ def backtest():
 
     # Perform backtest using a trading API client
     client = Client()
-    result = client.backtest(file_path=file_path)
+    result = client.backtest(
+        jupyter_id="Your_Jupyter_ID",  # the one you use to login to jupyter.untrade.io,
+        file_path=file_path,
+    )
     return result
+
 
 # Function for fronttesting the strategy with live data
 def fronttest():
@@ -63,28 +73,31 @@ def fronttest():
     client = Client()
 
     flag = 0
-    for i in range(data.shape[0] - 1, -1, -1):  # Iterate through the data in reverse order
+    for i in range(
+        data.shape[0] - 1, -1, -1
+    ):  # Iterate through the data in reverse order
         if data.iloc[i, :][generated_signal_column] == 1:
             if flag == 0:
-                print(data.iloc[i, :]["datetime"], " BUY")  
-                client.create_order()  
+                print(data.iloc[i, :]["datetime"], " BUY")
+                client.create_order()
                 flag = 1
             elif flag == -1:
-                print(data.iloc[i, :]["datetime"], " SQUARED OFF")  
-                client.close_order()  
+                print(data.iloc[i, :]["datetime"], " SQUARED OFF")
+                client.close_order()
                 flag = 0
             break
 
         if data.iloc[i, :][generated_signal_column] == -1:
             if flag == 0:
-                print(data.iloc[i, :]["datetime"], " SELL")  
-                client.create_order() 
+                print(data.iloc[i, :]["datetime"], " SELL")
+                client.create_order()
                 flag = 1
             elif flag == 1:
-                print(data.iloc[i, :]["datetime"], " SQUARED OFF")  
-                client.close_order()  
+                print(data.iloc[i, :]["datetime"], " SQUARED OFF")
+                client.close_order()
                 flag = -1
             break
+
 
 if __name__ == "__main__":
     # Create separate processes for backtesting and fronttesting

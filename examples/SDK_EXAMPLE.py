@@ -39,7 +39,6 @@ for i in result:
 # Each row in the file should represent a different time point in the dataset.
 
 
-
 # Function to create a market order without specifying a target stop loss
 def create_order_without_target_stop_loss():
     try:
@@ -50,7 +49,7 @@ def create_order_without_target_stop_loss():
             type="MARKET",  # Order type: MARKET (executed immediately at the current market price)
             market="COIN-M",  # Market identifier (replace with the correct market if needed)
             quantity=100,  # Quantity of the asset to buy or sell
-            leverage=10  # Leverage level for the order (adjust as needed)
+            leverage=10,  # Leverage level for the order (adjust as needed)
         )
         # Print a success message and display the order response details
         print("Order Created Successfully:")
@@ -59,6 +58,7 @@ def create_order_without_target_stop_loss():
     except Exception as e:
         # Print an error message if there's an exception during order creation
         print(f"Error creating order: {e}")
+
 
 # Call the function to execute the order creation
 create_order_without_target_stop_loss()
@@ -75,7 +75,6 @@ create_order_without_target_stop_loss()
 # position (float, optional): Position size.
 
 
-
 # Function to create a limit order with a target and stop loss
 def create_limit_order_with_target_stop_loss():
     try:
@@ -89,7 +88,7 @@ def create_limit_order_with_target_stop_loss():
             leverage=10,  # Leverage level for the order (adjust as needed)
             target=45000,  # Target price for the limit order
             stop_loss=35000,  # Stop-loss price for the limit order
-            price=42000  # Price at which the limit order will be executed or better
+            price=42000,  # Price at which the limit order will be executed or better
         )
         # Print a success message and display the order response details
         print("Order Created Successfully:")
@@ -98,6 +97,7 @@ def create_limit_order_with_target_stop_loss():
     except Exception as e:
         # Print an error message if there's an exception during order creation
         print(f"Error creating order: {e}")
+
 
 # Call the function to execute the limit order creation
 create_limit_order_with_target_stop_loss()
@@ -125,7 +125,7 @@ def create_target_order():
             type="TAKE_PROFIT_MARKET",  # Order type: TAKE_PROFIT_MARKET
             market="COIN-M",  # Market identifier (replace with the correct market if needed)
             stop_price=45000,  # Stop price for the take profit order
-            parent_order_id="68b195ec-150e-47e1-8e01-694b719acdd8"  # ID of the parent order
+            parent_order_id="68b195ec-150e-47e1-8e01-694b719acdd8",  # ID of the parent order
         )
         # Print a success message and display the order response details
         print("Target order created Successfully:")
@@ -133,6 +133,7 @@ def create_target_order():
     except Exception as e:
         # Print an error message if there's an exception during order creation
         print(f"An unexpected error occurred: {e}")
+
 
 # Function to create a stop-loss order
 def create_stoploss_order():
@@ -143,7 +144,7 @@ def create_stoploss_order():
             type="STOP_MARKET",  # Order type: STOP_MARKET
             market="COIN-M",  # Market identifier (replace with the correct market if needed)
             stop_price=35000,  # Stop price for the stop-loss order
-            parent_order_id="68b195ec-150e-47e1-8e01-694b719acdd8"  # ID of the parent order
+            parent_order_id="68b195ec-150e-47e1-8e01-694b719acdd8",  # ID of the parent order
         )
         # Print a success message and display the order response details
         print("Stop-loss order created successfully:")
@@ -152,6 +153,7 @@ def create_stoploss_order():
         # Print an error message if there's an exception during order creation
         print(f"An unexpected error occurred: {e}")
 
+
 # Function to close an existing order
 def close_existing_order():
     try:
@@ -159,7 +161,7 @@ def close_existing_order():
         response = client.close_order(
             symbol="BTCUSDT",  # Trading pair (Bitcoin to USDT)
             market="COIN-M",  # Market identifier (replace with the correct market if needed)
-            parent_order_id="68b195ec-150e-47e1-8e01-694b719acdd8"  # ID of the order to be closed
+            parent_order_id="68b195ec-150e-47e1-8e01-694b719acdd8",  # ID of the order to be closed
         )
         # Print a success message and display the order response details
         print("Order closed successfully:")
@@ -167,6 +169,7 @@ def close_existing_order():
     except Exception as e:
         # Print an error message if there's an exception during order closing
         print(f"An unexpected error occurred: {e}")
+
 
 # Calling the functions
 create_target_order()
@@ -196,9 +199,9 @@ def create_market_order_with_target_stop_loss():
         # Print an error message if there's an exception during order creation
         print(f"Error creating order: {e}")
 
+
 # Call the function to execute the market order creation
 create_market_order_with_target_stop_loss()
-
 
 
 # Parameters:
