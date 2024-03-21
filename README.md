@@ -70,7 +70,7 @@ Real-time Signal Generation in front_test.py
 In the dynamic environment of quantitative trading, real-time signal generation based on live data plays a pivotal role. To facilitate this, users are required to create a script named front_test.py, which will be responsible for analyzing current market data and making timely trading decisions.
 
 ##### Script Requirements
-Fetching Historical Data: The script must utilize the fetch_historical_data() function available in the examples folder to retrieve the latest market data each time it runs. This function ensures that the script has access to the most recent data necessary for making informed trading decisions.
+Fetching Historical Data: The script must utilize the fetch_historical_data() function available in example_fronttest.py present in examples folder to retrieve the latest market data each time it runs. This function ensures that the script has access to the most recent data necessary for making informed trading decisions.
 
 ##### Timeframe Specification
 Users must include a comment at the beginning of the front_test.py script specifying the timeframe they are using for their trading strategy. This is crucial for understanding the context in which the script operates and the frequency of data retrieval. For example:
