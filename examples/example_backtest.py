@@ -19,9 +19,18 @@ def perform_backtest(csv_file_path):
     result = client.backtest(
         file_path=csv_file_path,
         leverage=1,  # Adjust leverage as needed
-        jupyter_id="yogesh123",
+        jupyter_id="Your_Jupyter_ID",  # the one you use to login to jupyter.untrade.io
         result_type="Q",
     )
+    # result_type can be one of the following:
+    # "Q" - Quarterly Analysis(last dates of quarters)
+    # "QS" - Quarterly Analysis(start dates of quarters)
+    # "M" -  Monthly Analysis(last date of months)
+    # "MS"- Monthly Analysis(start dates of months)
+    # "Y" - Yearly Analysis(last dates of years)
+    # "YS" - Yearly Analysis(start dates of years)
+    # "6M" - Semi Annual Analysis(last dates of 6 months)
+    # "6MS" - Semi Annual Analysis(start dates of 6 months)
 
     return result
 
