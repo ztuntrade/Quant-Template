@@ -3,16 +3,16 @@ Here is the link to the dataset for btcusdt (2018-2022 i.e 5 years) and (2020-20
 - [Dataset for 2018-2022](https://drive.google.com/drive/folders/1SDhwScUNVrEmGBXbm8nDAlh2YO58hs9-)
 - [Dataset for 2020-2023](https://drive.google.com/drive/folders/1VloVIKEbdcpTJgE_JqAJyBeARFnIlGsP)
 
-Here is the link to the submission approach:
+Here is the link to the Strategy submission approach:
 - [Submission Approach Document](https://docs.google.com/document/d/1-IEJtl66IYE-1X294H60zqzxF3N5Bs4K8Fwads8mgrQ/edit)
 
 To gain an advantage and competitive edge, strategies must consistently outperform quarterly benchmark returns. For instance, envision a momentum-centric approach applied to BTCUSDT. If trained on 2018-2019 data and tested on FY'2020_21_22_23 (16 quarters), it should surpass benchmark returns in at least 75% of quarters, equating to 12 out of 16 quarters.
 
 You can send us the logs of any basic strategy to get a hold of how conversations go on here with respect to metrics and the suggestions that we send along for you to incorporate.
 
-- [jupyter.untrade.io](https://jupyter.untrade.io/) - It's our platform to develop, test, refine, and push code.
+- [Jupyter.untrade.io](https://jupyter.untrade.io/) - It's our platform to develop, test, refine, and push code.
 - [GitHub - Quant Template README](https://github.com/ztuntrade/Quant-Template/blob/main/README.md)  - This is the doc for assessing the functionality of Jupyter Hub.
-- [Discord Community](https://discord.gg/6yeyrjuy7Q) - **Join us on Discord**
+- [Telegram Community](https://t.me/Untradepartners) - **Join us on Telegram**
 
 Within this Jupyter_untrade, you will find an SDK library which can be used for backtesting your strategy. Kindly shift your activity to this so that we are in sync with respect to cutting time and be on the same page during every aspect of backtest/front-run monitoring.
 
