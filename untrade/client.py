@@ -56,12 +56,15 @@ class Client(BaseClient):
 
     def _create_request(self, request_type, path, **kwargs):
         uri = self._create_api_uri(path)
-        data = self._get_keyword_argumets(**kwargs)
-        self.response = getattr(self.session, request_type)(uri, json=data)
+        if request_type == "get":
+            self.response = getattr(self.session, request_type)(uri, params=kwargs)
+        else:
+            data = self._get_keyword_argumets(**kwargs)
+            self.response = getattr(self.session, request_type)(uri, json=data)
         return self._handle_response(self.response)
 
     def _get(self, path, **kwargs) -> Any:
-        return self._create_request("get", path, **kwargs)
+        return self._create_request("get", path, **kwargs["data"])
 
     def _post(self, path, **kwargs) -> Dict:
         return self._create_request("post", path, **kwargs)
