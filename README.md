@@ -2,10 +2,6 @@
 
 ## :book: For detailed documentation, please visit our [Documentation Site](https://docs-quant.untrade.io/) :book:
 
-<div style="border:2px solid red; padding: 15px; background-color: #ffe6e6; color: black; margin-bottom: 20px;">
-    <h2 style="color: red;">:book: Important :book:</h2>
-    <p>For detailed documentation, please visit our <a href="https://docs-quant.untrade.io/" style="color: red;"><b>Documentation Site</b></a></p>
-</div>
 
 Here is the link to the dataset for btcusdt (2018-2022 i.e 5 years) and (2020-2023 i.e 4 years) :
 - [Dataset for 2018-2022](https://drive.google.com/drive/folders/1SDhwScUNVrEmGBXbm8nDAlh2YO58hs9-)
