@@ -1,6 +1,6 @@
 # Welcome to the Create/Earn program
 
-## :book: For detailed documentation, please visit our [Documentation Site](https://docs-quant.untrade.io/) :book:
+## :book: For detailed documentation, please visit our [Documentation Page](https://docs-quant.untrade.io/) :book:
 
 
 Here is the link to the dataset for btcusdt (2018-2022 i.e 5 years) and (2020-2023 i.e 4 years) :
